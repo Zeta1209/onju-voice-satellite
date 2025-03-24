@@ -1,12 +1,10 @@
 # Onju Voice satellite
 
-Ever since voice satellites [were introduced](https://www.home-assistant.io/blog/2023/04/27/year-of-the-voice-chapter-2/#composing-voice-assistants) to [Home Assistant](https://www.home-assistant.io/), people wanted to use good microphones and speakers for this purpose, but not many were really available.
+This is a simple fork of Onju Voice satellite that I made that is working so you won't have to suffer like me.
 
-In a valiant attempt to free a Google Nest Mini (2nd generation) from its privacy ignoring overlords, [Justin Alvey](https://github.com/justLV) created [Onju Voice](https://github.com/justLV/onju-voice), a drop-in replacement PCB for the Mini, with an ESP32-S3 at its heart, capable of [some pretty funky stuff](https://twitter.com/justLV/status/1681377298308820992).
+Quick summary, install custom PCB, flash simple firmware with API Key and Wifi, close it, copy and paste my config below existing, copy your API Key and Wifi in my config, then delete old config, reboot it (couple of time if needed) then you will be able to add it to Home Assistant. In "Devices" it appears as a new device, you need to set it up by saying "Okay Nabu" a couple of time then choosing your assistant (I have Google Generative AI) and boom you can use the voice assistant.
 
-The purpose of this [ESPHome](https://www.esphome.io/) config is to be able to use such a modded Nest Mini as a voice satellite in Home Assistant. Here's a small demo:
-
-https://youtu.be/fuX6IYa79gA
+Mine is setup in french and is working fine, some synonyms are not understood but easier things like "Ferme les lumières" or "Éteins les lumières" are okay.
 
 ## License
 
@@ -29,15 +27,15 @@ The notification sounds used are under [CC BY 4.0 ATTRIBUTION](https://creativec
 
 ## Pre-requisites
 
-- Home Assistant 2024.7.0 or newer
+- Home Assistant 2025.3.4 or newer
 - A voice assistant [configured in HA](https://my.home-assistant.io/redirect/voice_assistants/) with STT and TTS in a language of your choice
-- ESPHome 2024.7.3 or newer
+- ESPHome 2025.2.0 or newer
 
 ## Known issues and limitations
 
 - you have to be able to retrofit an Onju Voice PCB inside a 2nd generation Google Nest Mini.
 - ESPHome currently can't use the I2S bus for both listening and playing **simultaneously**. As such, if you want to stream audio (like a TTS notification) to the Onju, you **need** to stop wake word listening first
-- the version for `microWakeWord` is in BETA and probably full of bugs (please [report them](https://github.com/tetele/onju-voice-satellite/issues/new?assignees=&labels=bug&projects=&template=bug.yml) if you find any)
+- the version for `microWakeWord` is currently working 
 
 ## Installation instructions
 
@@ -68,6 +66,8 @@ Although the online MP3 files should work, downloading them implies some lag. It
 - thanks to [Klaas Schoute](https://github.com/klaasnicolaas) for helping with a creating a microsite for the automatic installation of this config (still experimental)
 - thanks to the [ESPHome Discord server](https://discord.gg/KhAMKrd) members for both creating the most time saving piece of software ever and for helping out with some kinks with the config - in particular @jesserockz, @ssieb, @Hawwa, @BigBobba
 - thanks to [UNIVERSFIELD](https://freesound.org/people/UNIVERSFIELD/) for the notification sounds (licensed [CC BY 4.0 ATTRIBUTION](https://creativecommons.org/licenses/by/4.0/), slightly shortened and converted to mono)
+- One of the config I based mine on: https://gist.github.com/rmeissn/a6bc1c91f65a47cb5e37d6e2fcfa8849
+- One of the config I based mine on: https://github.com/nest000/onju-voice-satellite/blob/main/esphome/onju-voice-microwakeword.yaml
 
 If you'd like to thank me for creating and maintaining this config, you can [![GithubSponsor][githubsponsorbadge]][githubsponsor]
 
